@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 /**
  * Considerando a série de Fibonacci, em que os dois primeiros numeros são 0 e 1 e, a partir do terceiro, 
@@ -53,9 +54,26 @@ double fibonacci_PHI(int P) {
 }
 
 int main() {
+
     int P;
     printf("\nPosicao da serie Fibonacci: "); scanf("%d", &P);
-    //printf("fibonacci  (%d)   = %lf\n", P, fibonacci(P));
-    printf("fibonacci_I(%d)   = %lf\n", P, fibonacci_I(P));
-    printf("fibonacci_PHI(%d) = %lf\n", P, fibonacci_PHI(P));
+
+    long inicio, fim;
+    double Fn, FnI, FnPHI;
+
+    inicio = clock();
+    FnPHI = fibonacci_PHI(P);
+    fim = clock();    
+    printf("fibonacci_PHI(%d) = %lf (%ld)\n", P, FnPHI, (fim - inicio));
+
+    inicio = clock();
+    FnI = fibonacci_I(P);
+    fim = clock();    
+    printf("fibonacci_I(%d)   = %lf (%ld)\n", P, FnI, (fim - inicio));
+
+    inicio = clock();
+    Fn = fibonacci(P);
+    fim = clock();    
+    printf("fibonacci(%d)     = %lf (%ld)\n", P, Fn, (fim - inicio));
+
 }
